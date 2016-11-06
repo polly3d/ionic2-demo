@@ -13,11 +13,19 @@
 
 <ion-content>
     <ion-list>
-        <ion-item *ngFor="let data of cityArr" (click)="openCityWeatherUI(data)">
-            <h2>{{data.basic.city}}</h2>
-            <p>天气：{{data.now.cond.txt}}</p>
-            <p>温度：{{data.now.tmp}}°</p>
-            <p>湿度：{{data.now.hum}}%</p>
-        </ion-item>
+        <ion-item-sliding *ngFor="let data of cityArr">
+            <ion-item (click)="openCityWeatherUI(data)">
+                <h2>{{data.basic.city}}</h2>
+                <p>天气：{{data.now.cond.txt}}</p>
+                <p>温度：{{data.now.tmp}}°</p>
+                <p>湿度：{{data.now.hum}}%</p>
+            </ion-item>
+            <ion-item-options>
+                <button ion-button color="danger" (click)="deleteCity(data)">
+                    <ion-icon name="trash"></ion-icon>
+                    删除
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
     </ion-list>
 </ion-content>

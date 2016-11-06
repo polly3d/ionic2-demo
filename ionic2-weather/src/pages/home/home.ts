@@ -35,4 +35,10 @@ export class HomePage implements OnInit,AfterViewInit{
 
         this.navCtrl.push(CityDescriptionPage,{city:city});
     }
+
+    deleteCity(city)
+    {
+        let index = this.service.cityArr.indexOf(city);
+        this.service.cityArr.splice(index,1);
+    }
 }
