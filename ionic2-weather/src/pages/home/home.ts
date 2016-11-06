@@ -13,6 +13,7 @@ import {CityDescriptionPage} from "../city/city-description";
 export class HomePage{
 
     cityArr: Array<any>;
+    testIf: string = '';
 
     constructor(
         private navCtrl: NavController,
@@ -23,6 +24,7 @@ export class HomePage{
     ionViewDidEnter() {
         this.service.getCityArr()
             .then(data => {
+                console.log(data);
                 this.cityArr = data;
             });
     }
@@ -45,5 +47,10 @@ export class HomePage{
             .catch(error => {
                 console.log('delete error');
             });
+    }
+
+    toggleTest()
+    {
+        this.testIf = 'aa';
     }
 }
