@@ -8,6 +8,7 @@ import {CityPage} from "../pages/city/city";
 import {WeatherService} from "../providers/weather-service";
 import {HttpModule} from "@angular/http";
 import {CityDescriptionPage} from "../pages/city/city-description";
+import {Storage} from "@ionic/storage";
 
 /**
  * Created by sci-change on 2016/10/26.
@@ -38,6 +39,7 @@ import {CityDescriptionPage} from "../pages/city/city-description";
     ],
     providers: [
         WeatherService,
+        Storage,
     ]
 })
 export class AppModule {

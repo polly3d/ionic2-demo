@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
+import {Storage} from "@ionic/storage";
 
 /*
   Generated class for the WeatherService provider.
@@ -11,10 +12,62 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class WeatherService {
 
-    cityArr:Array<any> = [];
+    KEY: string = 'weather';
 
-    constructor(public http: Http) {
+    constructor(
+        public http: Http,
+        private storage: Storage
+    ) {
 
+    }
+
+
+
+    getCityArr(): Promise<any>{
+        return this.storage.get(this.KEY)
+            .then(result => {
+                return JSON.parse(result);
+            });
+    }
+
+    addCity(city: any): void {
+        this.getCityArr()
+            .then(result => {
+                let arr:Array<any> = result;
+                arr.push(city);
+                this.updateStorage(arr);
+            });
+    }
+
+    removeCity(city: any): Promise<any> {
+        return new Promise((resolve,reject) => {
+            this.getCityArr()
+                .then(result => {
+                    let arr: Array<any> = result;
+                    let index = -1;
+                    for(let i = 0; i < arr.length; i++)
+                    {
+                        let temp: any = arr[i];
+                        if(temp.basic.city == city.basic.city)
+                        {
+                            index = i;
+                            console.log(index);
+                            break;
+                        }
+                    }
+                    if(index != -1)
+                    {
+                        arr.splice(index,1);
+                        this.updateStorage(arr);
+                        resolve(arr);
+                    }
+                });
+        });
+
+    }
+
+    private updateStorage(cityArr: Array<any>) {
+        this.storage.set(this.KEY,JSON.stringify(cityArr));
     }
 
     load(city: string) {

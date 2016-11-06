@@ -10,7 +10,7 @@ import {CityDescriptionPage} from "../city/city-description";
 @Component({
     templateUrl: 'home.html',
 })
-export class HomePage implements OnInit,AfterViewInit{
+export class HomePage{
 
     cityArr: Array<any>;
 
@@ -20,11 +20,11 @@ export class HomePage implements OnInit,AfterViewInit{
     ) {
     }
 
-    ngOnInit() {
-        this.cityArr = this.service.cityArr;
-    }
-
-    ngAfterViewInit() {
+    ionViewDidEnter() {
+        this.service.getCityArr()
+            .then(data => {
+                this.cityArr = data;
+            });
     }
 
     openAddCityUI() {
@@ -38,7 +38,12 @@ export class HomePage implements OnInit,AfterViewInit{
 
     deleteCity(city)
     {
-        let index = this.service.cityArr.indexOf(city);
-        this.service.cityArr.splice(index,1);
+        this.service.removeCity(city)
+            .then(data => {
+                this.cityArr = data;
+            })
+            .catch(error => {
+                console.log('delete error');
+            });
     }
 }

@@ -24,8 +24,7 @@ export class CityPage {
             .then((data:any) => {
                 if(data.status == 'ok')
                 {
-                    console.log(data);
-                    this.service.cityArr.push(data);
+                    this.service.addCity(data);
                     this.navCtrl.pop();
                 }
                 else
