@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            添加城市
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-input type="text" placeholder="请输入城市名称" #city></ion-input>
+        </ion-item>
+    </ion-list>
+    <button ion-button block (click)="addCity(city)">确定</button>
+</ion-content>

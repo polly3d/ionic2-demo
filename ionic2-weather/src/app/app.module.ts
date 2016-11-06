@@ -1,46 +1,43 @@
 import {NgModule} from "@angular/core";
 import {AppComponent} from "./app.component";
 import {IonicApp, IonicModule} from "ionic-angular";
-import * as ActionSheets from "../pages/action-sheets/action-sheets";
-import * as Alerts from "../pages/alerts/alerts";
-import {BadgePage} from "../pages/badges/badges";
-import * as Buttons from "../pages/buttons/buttons";
-import {InAppBrowserComponent} from "../pages/in-app-browser/in-app-borwser-component";
-import {HttpTestComponent} from "../pages/http-test-component/http-test-component";
+import {TabsPage} from "../pages/tabs/tabs";
+import {HomePage} from "../pages/home/home";
+import {AboutPage} from "../pages/about/about";
+import {CityPage} from "../pages/city/city";
+import {WeatherService} from "../providers/weather-service";
+import {HttpModule} from "@angular/http";
+import {CityDescriptionPage} from "../pages/city/city-description";
+
 /**
  * Created by sci-change on 2016/10/26.
  */
 
 @NgModule({
     imports: [
-        IonicModule.forRoot(AppComponent)
+        IonicModule.forRoot(AppComponent),
+        HttpModule,
     ],
     bootstrap: [ IonicApp ],
     declarations: [
         AppComponent,
-        ActionSheets.BasicPage,
-        Alerts.BasicPage,
-        Alerts.PromptAlert,
-        Alerts.RadioAlert,
-        Alerts.CheckBoxAlert,
-        BadgePage,
-        Buttons.BaseButton,
-        Buttons.ButtonInComponent,
-        InAppBrowserComponent,
-        HttpTestComponent,
+        TabsPage,
+        HomePage,
+        AboutPage,
+        CityPage,
+        CityDescriptionPage,
+
     ],
     entryComponents: [
         AppComponent,
-        ActionSheets.BasicPage,
-        Alerts.BasicPage,
-        Alerts.PromptAlert,
-        Alerts.RadioAlert,
-        Alerts.CheckBoxAlert,
-        BadgePage,
-        Buttons.BaseButton,
-        Buttons.ButtonInComponent,
-        InAppBrowserComponent,
-        HttpTestComponent,
+        TabsPage,
+        HomePage,
+        AboutPage,
+        CityPage,
+        CityDescriptionPage,
+    ],
+    providers: [
+        WeatherService,
     ]
 })
 export class AppModule {

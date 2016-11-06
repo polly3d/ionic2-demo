@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            天气详情
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-card>
+        <ion-card-header>
+            {{city.basic.city}} 天气详情
+        </ion-card-header>
+        <ion-card-content>
+            <p>天气：{{city.now.cond.txt}}</p>
+            <p>风力：{{city.now.wind.deg}}</p>
+            <p>风向：{{city.now.wind.dir}}</p>
+            <p>风速：{{city.now.wind.spd}}</p>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

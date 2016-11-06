@@ -1,30 +1,22 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
-import {NavItem} from "../core/nav-item";
-import * as helper from "../directives/helper";
-import {Nav, MenuController} from "ionic-angular";
+import {Component} from "@angular/core";
+import {Platform} from 'ionic-angular';
+import {TabsPage} from "../pages/tabs/tabs";
+import {StatusBar,Splashscreen} from 'ionic-native';
 /**
  * Created by sci-change on 2016/10/26.
  */
 
 @Component({
-    templateUrl: 'app.html'
+    template: `<ion-nav [root]="rootPage"></ion-nav>`
 })
-export class AppComponent implements OnInit{
-    rootPage: any;
-    navItems: NavItem[];
+export class AppComponent{
+    rootPage = TabsPage;
 
-    @ViewChild(Nav) nav: Nav;
-
-    constructor(private menuCtrl: MenuController) {}
-
-    ngOnInit(): void {
-        this.navItems = helper.getAllNavItems();
-        this.rootPage = this.navItems[this.navItems.length - 1].component;
+    constructor(platform: Platform) {
+        platform.ready().then(() => {
+            StatusBar.styleDefault();
+            Splashscreen.hide();
+        });
     }
 
-    openMenu(item: NavItem): void {
-        if(item.component)
-            this.nav.setRoot(item.component);
-        this.menuCtrl.close();
-    }
 }
