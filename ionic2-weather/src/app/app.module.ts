@@ -1,14 +1,11 @@
 import {NgModule} from "@angular/core";
 import {AppComponent} from "./app.component";
 import {IonicApp, IonicModule} from "ionic-angular";
-import {TabsPage} from "../pages/tabs/tabs";
-import {HomePage} from "../pages/home/home";
-import {AboutPage} from "../pages/about/about";
-import {CityPage} from "../pages/city/city";
+import {HomePage} from "../pages/home-page/home-page";
+import {AddPage} from "../pages/add-page/add-page";
+import {ForecastPage} from "../pages/forecast-page/forecast-page";
 import {WeatherService} from "../providers/weather-service";
-import {HttpModule} from "@angular/http";
-import {CityDescriptionPage} from "../pages/city/city-description";
-import {Storage} from "@ionic/storage";
+import {WeatherComponent} from "../component/weather-component";
 
 /**
  * Created by sci-change on 2016/10/26.
@@ -17,29 +14,23 @@ import {Storage} from "@ionic/storage";
 @NgModule({
     imports: [
         IonicModule.forRoot(AppComponent),
-        HttpModule,
     ],
     bootstrap: [ IonicApp ],
     declarations: [
         AppComponent,
-        TabsPage,
         HomePage,
-        AboutPage,
-        CityPage,
-        CityDescriptionPage,
-
+        AddPage,
+        ForecastPage,
+        WeatherComponent,
     ],
     entryComponents: [
         AppComponent,
-        TabsPage,
         HomePage,
-        AboutPage,
-        CityPage,
-        CityDescriptionPage,
+        AddPage,
+        ForecastPage,
     ],
     providers: [
         WeatherService,
-        Storage,
     ]
 })
 export class AppModule {
